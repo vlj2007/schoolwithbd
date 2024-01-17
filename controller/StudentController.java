@@ -23,7 +23,7 @@ public class StudentController {
     }
 
     @GetMapping("{id}") // http://localhost:8080/students/4 (для получения данных с сервера, выводит студента по id)
-    public ResponseEntity<Student> getStudentInfo(@PathVariable Long id){
+    public ResponseEntity<Student> getStudentInfo(@PathVariable Long id) {
         Student student = studentService.findStudent(id);
         if (student == null) {
             return ResponseEntity.notFound().build();
@@ -32,7 +32,7 @@ public class StudentController {
     }
 
     @PutMapping //PUT localhost:8080/students/ (для редактирования данных студента)
-    public ResponseEntity<Student> editStudent(@RequestBody Student student){
+    public ResponseEntity<Student> editStudent(@RequestBody Student student) {
         Student foundStudent = studentService.editStudent(student);
         if (foundStudent == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -47,7 +47,7 @@ public class StudentController {
     }
 
     @GetMapping(path = "/find") // http://localhost:8080/students/find
-    public Collection<Student> getStudents(){
+    public Collection<Student> getStudents() {
         return studentService.getAllStudent();
     }
 

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.hogwartswithbd.schoolwithbd.model.Student;
 import ru.hogwartswithbd.schoolwithbd.repository.StudentRepository;
+import ru.hogwartswithbd.schoolwithbd.exception.BadRequestException;
 
 import java.util.Collection;
 import java.util.List;
@@ -29,7 +30,7 @@ public class StudentService {
     }
 
     public Student findStudent(Long id) {
-        return studentRepository.findById(id).orElseThrow();
+        return studentRepository.findById(id).orElseThrow(() -> new BadRequestException("Отсутствует id"));
     }
 
     public void deleteStudent(long id) {
@@ -37,6 +38,10 @@ public class StudentService {
     }
 
     public void deleteAllStudents(Student student) {
+        studentRepository.deleteAll();
+    }
+
+    public void deleteAllStudents() {
         studentRepository.deleteAll();
     }
 
