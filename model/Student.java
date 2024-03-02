@@ -1,12 +1,17 @@
 package ru.hogwartswithbd.schoolwithbd.model;
 
 import java.util.Objects;
-import jakarta.persistence.Entity;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
+    @Column
     String name;
+    @Column
     int age;
 
     public Student() {
